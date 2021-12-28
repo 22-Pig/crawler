@@ -16,18 +16,13 @@ for i in soup.descendants:
 lst = []
 for i in table.descendants:
     if str(i.name).lower() == 'img':
-        # print(i)
-        # print(str(i.attrs['src']).count("/empty.gif"))
         if str(i.attrs['src']).count("/empty.gif") >= 1:
             continue
-        # print('http://www.zwu.edu.cn/'+i.parent.attrs['href'])
         lst.append('http://www.zwu.edu.cn/' + i.parent.attrs['href'])
 # print(lst)
 
-root = "E://Desktop//"
+root = "E://Desktop//test//"
 for i in range(len(lst)):
-    # print(lst[i])
-    # print(str(i) + '.jpg')
     path = root + str(i) + '.jpg'
     try:
         if not os.path.exists(path):
