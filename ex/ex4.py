@@ -1,8 +1,6 @@
 import requests
 import os
 
-from requests.api import patch
-
 url = "http://www.zwu.edu.cn/_upload/article/images/04/17/e8b3385c4fe5aa24a09339dde733/e1876272-63d4-4872-a7bb-be9b4a998cbd.jpg"
 root = "E://Desktop//"
 # 分离图片地址取最后字段
