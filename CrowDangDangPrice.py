@@ -48,7 +48,7 @@ def saveText(filename, data):
 
 def main():
     uinfo = []
-    for i in range(1, 4):
+    for i in range(1, 3):
         url = 'http://search.dangdang.com/?key=%B3%CC%D0%F2%C9%E8%BC%C6&act=input&page_index=' + str(
             i)
         html = getHTMLText(url)

@@ -6,7 +6,8 @@ import os
 # 获取网页数据
 def getHTMLText(url):
     try:
-        r = requests.get(url)
+        hd = {'User-Agent': 'Chrome/96.0.4664.110'}
+        r = requests.get(url, headers=hd)
         r.raise_for_status()
         r.encoding = r.apparent_encoding
         return r.text
