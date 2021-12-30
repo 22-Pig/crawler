@@ -1,6 +1,4 @@
-import bs4
 import requests
-import re
 from bs4 import BeautifulSoup
 
 
@@ -14,29 +12,9 @@ def getHTMLText(url):
         return "error"
 
 
-def parsePage(ilt, html):
-    try:
-        plt = re.findall(r'\"view_price\"\:\"[\d\.]*\"', html)
-        tlt = re.findall(r'\"raw_title\"\:\".*?\"', html)
-        for i in range(len(plt)):
-            price = eval(plt[i].split(':')[1])
-            title = eval(tlt[i].split(':')[1])
-            ilt.append([price, title])
-    except:
-        print("")
-
-
-def printGoodsList(ilt):
-    tplt = "{:4}\t{:8}\t{:16}"
-    print(tplt.format("序号", "价格", "商品名称"))
-    count = 0
-    for g in ilt:
-        count = count + 1
-        print(tplt.format(count, g[0], g[1]))
-
-
-def fillUnivList(ulist, html):
+def fillBookList(ulist, html):
     soup = BeautifulSoup(html, "html.parser")
+    # print(soup)
     div = soup.find('div', {'name': 'm940032_pid0_t12840'})
     for li in div.find_all('li'):
         # print(li.text)
@@ -69,23 +47,14 @@ def saveText(filename, data):
 
 
 def main():
-    # goods = '程序设计'
-    # depth = 3
-    # start_url = 'http://search.dangdang.com/?key=' + goods
-    # infoList = []
-    # for i in range(depth):
-    #     try:
-    #         url = start_url + '&s=' + str(44 * i)
-    #         html = getHTMLText(url)
-    #         parsePage(infoList, html)
-    #     except:
-    #         continue
-    # printGoodsList(infoList)
     uinfo = []
-    url = 'http://search.dangdang.com/?key=%B3%CC%D0%F2%C9%E8%BC%C6&act=input'
-    html = getHTMLText(url)
-    fillUnivList(uinfo, html)
-    path = 'E://Desktop//dangdang.csv'
+    for i in range(1, 4):
+        url = 'http://search.dangdang.com/?key=%B3%CC%D0%F2%C9%E8%BC%C6&act=input&page_index=' + str(
+            i)
+        html = getHTMLText(url)
+        fillBookList(uinfo, html)
+    # print(uinfo)
+    path = 'E://Desktop//dangdang.txt'
     saveText(path, uinfo)
 
 
