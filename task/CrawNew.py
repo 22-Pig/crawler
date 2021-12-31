@@ -44,6 +44,7 @@ def getContent(ulist, html):
     return ulist
 
 
+# 获取单条新闻里的详细内容
 def getDetail(href, count, source):
     html = getHTMLText(href)
     soup = BeautifulSoup(html, "html.parser")
@@ -56,9 +57,9 @@ def getDetail(href, count, source):
 
 def createTable(uinfo):
     # 标题
-    table = HTMLTable(caption='新闻汇总表')
+    table = HTMLTable(caption='南京邮电大学新闻汇总表')
     # 表头行
-    table.append_header_rows((('新闻标题', '链接网址', '发布日期', '浏览次数', '文章来源'),))
+    table.append_header_rows((('新闻标题', '链接网址', '发布日期', '浏览次数', '文章来源'), ))
     # 数据行
     table.append_data_rows(uinfo)
     # 标题样式
@@ -107,7 +108,7 @@ def saveHtml(path, table):
 
 def main():
     uinfo = []
-    path = 'C://temp//'
+    path = 'C://TEMP//'
     for i in range(1, 8):
         url = 'https://www.njupt.edu.cn/53/list' + str(i) + '.psp'
         html = getHTMLText(url)

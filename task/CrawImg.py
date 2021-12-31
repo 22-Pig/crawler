@@ -46,7 +46,7 @@ def saveImg(path, data):
 def main():
     url = 'http://www.njupt.edu.cn/19/list.htm'
     uinfo = []
-    path = 'C://temp//'
+    path = 'C://TEMP//'
 
     html = getHTMLText(url)
     getImg(uinfo, html)
